@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:RecipeApp_GUI.ViewModel"
+                    xmlns:view="clr-namespace:RecipeApp_GUI.Views">
+
+
+    <DataTemplate DataType= "{x:Type vm:HomeVM}">
+        <view:Home/>
+    </DataTemplate>
+    <DataTemplate DataType= "{x:Type vm:AddRecipeVM}">
+        <view:AddRecipe/>
+    </DataTemplate>
+    <DataTemplate DataType= "{x:Type vm:RecipeListVM}">
+        <view:RecipeList/>
+    </DataTemplate>
+</ResourceDictionary> 

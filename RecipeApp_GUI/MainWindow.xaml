@@ -1,0 +1,73 @@
+﻿<Window x:Class="RecipeApp_GUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RecipeApp_GUI"
+        xmlns:vm="clr-namespace:RecipeApp_GUI.ViewModel"
+        xmlns:Menu="clr-namespace:RecipeApp_GUI.Utilities"
+        mc:Ignorable="d"
+        Title="Recipe App" 
+        Height="540" 
+        Width="900" 
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent"
+        >
+    <Window.DataContext>
+        <vm:NavigationVM/>
+    </Window.DataContext>
+    <Grid>
+        <Border Background="White" CornerRadius="20" />
+        <Grid>
+            <!--//Bass Grid//-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228"/>
+                <ColumnDefinition Width="675"/>
+            </Grid.ColumnDefinitions>
+            <!--//Navigation Panel//-->
+            <Grid HorizontalAlignment="Left" Width="228">
+                <Border Background="Black" CornerRadius="20,0,0,20"/>
+                <StackPanel Height="400" Width="228">
+                    <!--//Home//-->
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding HomeCommand}" IsChecked="True">
+                        <Grid>
+                            <Image Source="Images/home.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Home" Style="{StaticResource Text_Style}"/>
+                        </Grid>
+                    </Menu:Btn>
+                    <!--//Add Recipe-->
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding AddRecipeCommand}">
+                        <Grid>
+                            <Image Source="Images/Add.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Add Recipe" Style="{StaticResource Text_Style}"/>
+                        </Grid>
+                    </Menu:Btn>
+                    <Menu:Btn Style="{StaticResource BtnStyle}" Command="{Binding RecipeListCommand}" Checked="Btn_Checked">
+                        <Grid>
+                            <Image Source="Images/List.png" Style="{StaticResource Image_Style}" />
+                            <TextBlock Text="Recipe List" Style="{StaticResource Text_Style}"/>
+                        </Grid>
+                    </Menu:Btn>
+                    <!--//Recipe List//-->
+                </StackPanel>
+
+                <Label Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,0" FontSize="40">
+                    RECIPE APP
+                </Label>
+                <Label Foreground="WhiteSmoke" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,10" FontSize="10">
+                    By Kelisha Naidoo
+                </Label>
+            </Grid>
+            <Grid Grid.Column="1">
+                <Grid>
+                    <ContentControl x:Name="Page" Content="{Binding CurrentView}" Panel.ZIndex="0"/>
+                    <Button x:Name="btnClose" Width="30" Height="30" Margin="0,5,5,0" Click="btnClose_Click" Panel.ZIndex="1" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="Images/Close.png" Stretch="Uniform" />
+                    </Button>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

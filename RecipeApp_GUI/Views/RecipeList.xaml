@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="RecipeApp_GUI.Views.RecipeList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:RecipeApp_GUI.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+
+    <Grid>
+        <Border Background="DimGray">
+            <Border Height="50"
+                    Width="620"
+                    VerticalAlignment="Top"
+                    Margin="0,20,0,0"
+                    CornerRadius="20"
+                    Background="AliceBlue">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox x:Name="searchTextBox"
+                             FontSize="15"
+                             Height="30"
+                             Width="500"
+     
+                             VerticalAlignment="Top"
+                             Margin="0,10,0,0"
+                             KeyUp="SearchTextBox_KeyUp" />
+                    <Label Content="SEARCH BAR" Margin="10,10,0,0"></Label>
+                </StackPanel>
+            </Border>
+        </Border>
+        <DataGrid x:Name="recipeDataGrid"
+                  Height="370"
+                  Margin="0,80,0,0"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  ItemsSource="{Binding filteredRecipeList}"
+                  IsReadOnly="True"
+                  MouseDoubleClick="recipeDataGrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Recipe Name" Binding="{Binding RecipeName}" />
+                <DataGridTextColumn Header="Total Calories" Binding="{Binding Calorie}" />
+                <DataGridTextColumn Header="Food Group(s)" Binding="{Binding FoodGroup}" />
+                <DataGridTextColumn Header="Date Created" Binding="{Binding DateCreated}" />
+                <DataGridTextColumn Header="Date Modified" Binding="{Binding DateModified}" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,460,0,0">
+            <Button Content="Edit" Height="20" Width="40" Click="EditButton_Click" />
+            <Button Content="Delete" Height="20" Width="40" Click="DeleteButton_Click" />
+        </StackPanel>
+    </Grid>
+</UserControl>
